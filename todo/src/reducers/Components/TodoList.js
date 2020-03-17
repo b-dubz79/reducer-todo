@@ -1,15 +1,19 @@
 import React from 'react'
-import TodoForm from './TodoForm'
-import {todoReducer, initialState} from '../Reducer'
-import React, {useState, useReducer} from 'react'
+import Todo from './Todo'
 
-const TodoList = () => {
+
+const TodoList = (props) => {
+  
     return (
         <div>
-            <h1>{}</h1>
-        </div>
+            
+            {props.state.map(todo => {
+               <Todo todo={todo} dispatch={props.dispatch}/> 
+            })}
+       
 
-        <TodoForm/>
+           
+        </div>
     )
 
 }

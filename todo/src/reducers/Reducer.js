@@ -1,26 +1,35 @@
 export const initialState = [
     {
-        type: 'panic about Redux',
+        item: 'panic about Redux',
         completed: false,
         id: 1
 
     },
     {
-        type: 'struggle with Redux',
+        item: 'struggle with Redux',
         completed: false,
         id: 2
     },
     {
-        type: 'pull hair out',
+        item: 'pull hair out',
         completed: false,
         id: 3
     }
 ]
 
 export const todoReducer = (state, action) => {
-    switch (action.type){
-        default: 
-        return state; 
+    switch (action.type) {
+        case "ADD_TODO":
+            return [
+                ...state,
+                {
+                    item: action.payload,
+                    completed: false,
+                    id: Date.now()
+                }
+            ]
+            default:  return state;
     }
-   
-}
+        
+            
+    }

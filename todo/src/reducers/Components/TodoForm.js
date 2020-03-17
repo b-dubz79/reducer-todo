@@ -1,12 +1,10 @@
-import {todoReducer, initialState} from '../Reducer'
 import React, {useState, useReducer} from 'react'
+import {todoReducer, initialState} from '../Reducer'
+import TodoList from './TodoList'
 
-const [state, dispatch] = useReducer (todoReducer, initialState)
-const [todoInput, setTodoInput] = useState('')
 
-const handleChanges = (e) => {
-    setTodoInput(e.target.value)
-}
+
+
 
 // const clearCompleted = () => {
 //     setTodoInput({
@@ -17,19 +15,35 @@ const handleChanges = (e) => {
 // }
 
 const TodoForm = () => {
+    const [state, dispatch] = useReducer (todoReducer, initialState)
+    const [todoInput, setTodoInput] = useState('')
+
+    const handleChanges = (e) => {
+        e.preventDefault();
+        setTodoInput(e.target.value)
+    }
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setTodoInput('')
+    }
+
     return (
     <div>
-        <form>
+        <form onSubmit={handleSubmit}>
             <input 
                 type='text'
-                name='todo'
+                name='todoInput'
                 value={todoInput}
                 onChange={handleChanges}
-            >
-            </input>
-            <button onClick='submit'>Add ToDo</button>
+            />
+            
+            <button onClick={() => dispatch({type: "ADD_TODO", payload: todoInput })}>Add ToDo </button>
             <button>Clear</button>
+
+            <TodoList state={state} dispatch={dispatch}/>
         </form>
+
     </div>
     )
 }

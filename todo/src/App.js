@@ -7,7 +7,8 @@ import TodoList from './reducers/Components/TodoList'
 function App() {
   return (
     <div>
-      <TodoList/>
+      <TodoForm/>
+     
     </div>
   )
 }
