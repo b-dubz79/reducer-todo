@@ -3,12 +3,12 @@ import Todo from './Todo'
 
 
 const TodoList = (props) => {
-  
+ console.log('!!!!!!!', props)
     return (
         <div>
             
             {props.state.map(todo => {
-               <Todo todo={todo} dispatch={props.dispatch}/> 
+             return  <Todo todo={todo} dispatch={props.dispatch}/> 
             })}
        
 

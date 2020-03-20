@@ -3,19 +3,9 @@ import {todoReducer, initialState} from '../Reducer'
 import TodoList from './TodoList'
 
 
-
-
-
-// const clearCompleted = () => {
-//     setTodoInput({
-//         type: state.type.filter(todo => {
-//             return(todo.completed !== false)
-//         })
-//     })
-// }
-
 const TodoForm = () => {
     const [state, dispatch] = useReducer (todoReducer, initialState)
+    
     const [todoInput, setTodoInput] = useState('')
 
     const handleChanges = (e) => {
@@ -26,6 +16,11 @@ const TodoForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setTodoInput('')
+    }
+
+    const handleClear = (e) => {
+        e.preventDefault()
+        dispatch({type: 'CLEAR_COMPLETED'})
     }
 
     return (
@@ -39,7 +34,7 @@ const TodoForm = () => {
             />
             
             <button onClick={() => dispatch({type: "ADD_TODO", payload: todoInput })}>Add ToDo </button>
-            <button>Clear</button>
+            <button ONlCIK={ handleClear}>Clear Completed</button>
 
             <TodoList state={state} dispatch={dispatch}/>
         </form>
@@ -49,3 +44,12 @@ const TodoForm = () => {
 }
 
 export default TodoForm;
+
+
+// const clearCompleted = () => {
+//     setTodoInput({
+//         type: state.type.filter(todo => {
+//             return(todo.completed !== false)
+//         })
+//     })
+// }
